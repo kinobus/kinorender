@@ -1,0 +1,4 @@
+flask
+Cairo
+cairosvg
+PIL
