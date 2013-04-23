@@ -50,16 +50,13 @@ def crossdomain(origin=None, methods=None, headers=None,
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
- 
+
 
 @app.route('/render', methods=['GET'])
 @crossdomain(origin='*')
 def render_image():
-    #options = request.values['options']
-    #render.get_kinome_layer()
-    resp = send_from_directory('static', 'kinome.png', as_attachment=True)
-    render.render_kinome(request.values['svg'])
-    return resp
+    png = render.render_kinome(request.values['svg'])
+    return jsonify({ 'png': png })
 
 
 if __name__ == '__main__':
